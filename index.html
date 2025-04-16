@@ -17,3 +17,123 @@
     <script src="script.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lorena's Haunted Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Creepster', cursive;
+      background: url('https://i.imgur.com/kXz1d8E.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+
+    .game-container {
+      padding: 50px 20px;
+      background: rgba(0, 0, 0, 0.7);
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .doors {
+      margin-top: 30px;
+    }
+
+    .doors img {
+      width: 200px;
+      margin: 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      border: 4px solid white;
+      border-radius: 10px;
+    }
+
+    .doors img:hover {
+      transform: scale(1.05);
+    }
+
+    .result, .choices {
+      margin-top: 30px;
+      font-size: 1.5em;
+    }
+
+    .button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1em;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: crimson;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h1>Welcome to Lorena's Haunted House</h1>
+    <p>You find yourself in a mysterious room... which door will you open?</p>
+    <div class="doors">
+      <img src="https://i.imgur.com/ZMHqJ3b.png" alt="Left Door" onclick="chooseDoor('left')">
+      <img src="https://i.imgur.com/9rU4bNR.png" alt="Right Door" onclick="chooseDoor('right')">
+    </div>
+    <div id="result" class="result"></div>
+    <div id="choices" class="choices"></div>
+  </div>
+
+  <script>
+    function chooseDoor(door) {
+      const result = document.getElementById('result');
+      const choices = document.getElementById('choices');
+      choices.innerHTML = '';
+
+      if (door === 'left') {
+        result.textContent = 'You found a sparkling treasure chest! Do you want to open it?';
+        choices.innerHTML = `
+          <button class="button" onclick="openChest(true)">Yes</button>
+          <button class="button" onclick="openChest(false)">No</button>
+        `;
+      } else if (door === 'right') {
+        result.textContent = 'A wild monster appears! Do you want to fight it or run away?';
+        choices.innerHTML = `
+          <button class="button" onclick="monsterFight(true)">Fight</button>
+          <button class="button" onclick="monsterFight(false)">Run</button>
+        `;
+      }
+    }
+
+    function openChest(open) {
+      const result = document.getElementById('result');
+      const choices = document.getElementById('choices');
+      choices.innerHTML = '';
+      result.textContent = open
+        ? 'A dazzling light bursts out — you win the treasure! 🎉'
+        : 'You walk away... maybe too cautious? Game over :p';
+    }
+
+    function monsterFight(fight) {
+      const result = document.getElementById('result');
+      const choices = document.getElementById('choices');
+      choices.innerHTML = '';
+      result.textContent = fight
+        ? 'Epic battle! You slay the beast and become a hero! 🗡️'
+        : 'You escaped, but maybe you missed glory? Game over :p';
+    }
+  </script>
+</body>
+</html>
